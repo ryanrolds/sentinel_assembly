@@ -1,6 +1,24 @@
 # Compare sentinel check vs ifs catch all
 
+## Anylysis 
+
+Well optimized versions for both examples have slightly different characteristis. If branch prediction guesses correctly the jumps in `normal.c` would perform slightly faster, but much slower if one, or the more, of the predictions fail. While `sentinal.c` would be slower in some cases, it would faster and more consistent when receiving unbiased input. 
+
 ## normal.c
+
+```
+int function(int value) {
+  if (value == 0) {
+    return 0;
+  }
+
+  if (value == 1) {
+    return 1;
+  }
+
+  return -1;
+};
+```
 
 ### non-optmized
 
@@ -54,6 +72,24 @@
 ## sentinal.c
 
 ```
+int function(int value) {
+  if (value != 0 && value != 1) {
+    return -1;
+  }
+
+  if (value == 0) {
+    return 0;
+  }
+
+  if (value == 1) {
+    return 1;
+  }
+};
+```
+
+### non-optmized
+
+```
 0000000000000000 <function>:
    0:	55                   	push   %rbp
    1:	48 89 e5             	mov    %rsp,%rbp
@@ -104,7 +140,3 @@
    b:	c3                   	retq   
 
 ```
-
-## Anylysis 
-
-Well optimized versions for both examples have slightly different characteristis. If branch prediction guesses correctly the jumps in `normal.c` would perform slightly faster, but much slower if one, or the more, of the predictions fail. While `sentinal.c` would be slower in some cases, it would faster and more consistent when receiving unbiased input. 
