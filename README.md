@@ -2,7 +2,7 @@
 
 ## Analysis
 
-Well optimized versions for both examples have slightly different characteristis. If branch prediction guesses correctly the jumps in `normal.c` would perform slightly faster, but much slower if one, or the more, of the predictions fail. While `sentinal.c` would be slower in some cases, it would faster and more consistent when receiving unbiased input. 
+Well optimized versions for both examples have slightly different characteristics. If branch prediction guesses correctly the jumps in `normal.c` would perform slightly faster, but much slower if one, or more, of the predictions fail. While `sentinal.c` would be slower in some cases, it would faster and more consistent when receiving unbiased input. 
 
 More information: https://github.com/xiadz/cmov
 
